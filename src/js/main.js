@@ -1,16 +1,15 @@
-function isWebP() {
-    function testWebP(callback) {
-        let webP = new Image();
-        webP.onload = webP.onerror = function () {
-            callback(webP.height == 2);
-        };
-        webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
-    }
-    testWebP(function(support) {
-        let className = support === true ? 'webp' : 'no-webp';
-        document.querySelector('body').classList.add(className);
-    });
-}
+import './slider.js';
+import modals from "./modules/modals.js";
+import isWebP from './modules/helper.js';
+import tabs from "./modules/tabs.js";
+import forms from "./modules/forms.js";
+
+window.addEventListener('DOMContentLoaded', () => {
+   modals();
+   tabs('.glazing_slider', '.glazing_block', '.glazing_content', 'active');
+   tabs('.decoration_slider', '.no_click', '.decoration_content > div > div', 'after_click');
+   forms();
+});
 
 isWebP();
 
