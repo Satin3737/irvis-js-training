@@ -937,11 +937,14 @@ textarea:focus {
   display: inline-block;
 }
 
-.do_image_more img{
-    width: 110px;
-    height: 70px;
-    cursor: pointer;
-  }
+img.do_image_more {
+  transform: scale(1.1);
+}
+
+.balcon_icons_btn {
+  transition: all 0.3s;
+  cursor: pointer;
+}
 
 .popup_calc_close {
   position: absolute;
@@ -1054,7 +1057,7 @@ textarea:focus {
 }
 
 .no-background {
-  background: url();
+  background: none;
 }
 
 .checkbox-custom[id="warm"]::before {
@@ -1063,7 +1066,7 @@ textarea:focus {
 
 .popup_calc_profile_content .label {
   padding: 1.3rem 2rem;
-  z-index: 18rem;
+  z-index: 18;
   color: #000000;
   font-size: 1.5rem;
   font-weight: 500;

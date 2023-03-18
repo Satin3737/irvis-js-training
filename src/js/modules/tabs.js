@@ -1,4 +1,4 @@
-const tabs = (tabSection, tabButtonSelector, tabContentSelector, activeClass) => {
+const tabs = (tabSection, tabButtonSelector, tabContentSelector, activeClass, display = 'block') => {
 
     const section = document.querySelector(tabSection);
     const tabButtons = document.querySelectorAll(tabButtonSelector);
@@ -15,7 +15,7 @@ const tabs = (tabSection, tabButtonSelector, tabContentSelector, activeClass) =>
     }
 
     function showTabContent(i = 0) {
-        tabContents[i].style.display = 'block';
+        tabContents[i].style.display = display;
         tabButtons[i].classList.add(activeClass);
     }
 

@@ -1,7 +1,8 @@
-const forms = () => {
+import checkNumInputs from "./checkNumInputs.js";
+
+const forms = (state) => {
     const forms = document.querySelectorAll('form');
     const inputs = document.querySelectorAll('input');
-    const phoneInputs = document.querySelectorAll('[name="user_phone"]');
 
     const message = {
         loading: 'Загрузка',
@@ -9,11 +10,7 @@ const forms = () => {
         failure: 'Ошибка'
     };
     
-    phoneInputs.forEach(input => {
-        input.addEventListener('input', () => {
-            input.value = input.value.replace(/\D/, '');
-        });
-    });
+    checkNumInputs('[name="user_phone"]');
     
     const postData = async (url, data) => {
         document.querySelector('.status').textContent = message.loading;
@@ -41,9 +38,14 @@ const forms = () => {
            
            const formData = new FormData(form);
            
+           if (form.getAttribute('data-calc') === 'end') {
+               for (let key in state) {
+                   formData.append(key, state[key]);
+               }
+           }
+           
            postData('../files/server.php', formData)
-               .then(res => {
-                   console.log(res);
+               .then(() => {
                    statusMessage.textContent = message.success;
                })
                .catch(() => {
@@ -53,6 +55,10 @@ const forms = () => {
                    clearInputs();
                    setTimeout(() => {
                        statusMessage.remove();
+                       for (let key in state) {
+                           delete state[key];
+                       }
+                       
                    }, 5000);
                });
        });
