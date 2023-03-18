@@ -1120,6 +1120,20 @@ img.do_image_more {
 
 /* small devices, tablets */
 
+.faded {
+  animation: faded 1s;
+}
+
+@keyframes faded {
+  0% {
+    opacity: 0.1;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 @media (max-width: 1400px) {
   .main {
     background-position: -30rem 0;

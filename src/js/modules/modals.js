@@ -38,17 +38,34 @@ const modals = () => {
     function openModal(modal) {
         modal.style.display = 'block';
         document.body.classList.add('modal-open');
+        document.body.style.marginRight = `${calcScrollbar()}px`;
     }
 
     function closeModal(modal) {
         modal.style.display = 'none';
         document.body.classList.remove('modal-open');
+        document.body.style.marginRight = '0';
     }
 
     function showModalByTime(modalSelector, time) {
         setTimeout(() => {
             document.querySelector(modalSelector).style.display = 'block';
         }, time);
+    }
+    
+    function calcScrollbar() {
+        let div = document.createElement('div');
+        
+        div.style.width = '50px';
+        div.style.height = '50px';
+        div.style.overflowY = 'scroll';
+        div.style.visibility = 'hidden';
+        
+        document.body.appendChild(div);
+        let scrollWidth = div.offsetWidth - div.clientWidth;
+        div.remove();
+        
+        return scrollWidth;
     }
 
     bindModal('.popup_engineer_btn', '.popup_engineer', '.popup_close');
